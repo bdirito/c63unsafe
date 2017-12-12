@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  nginx:
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfile
+    command: /bin/bash -c "nginx -g 'daemon off;'"
+    ports:
+      - 8080:80
+
+  selenium:
+    image: elgalu/selenium
+    ports:
+      - 4444:4444
+      - 6080:6080
+    environment:
+      GRID: 'true'
+      CHROME: 'true'
+      FIREFOX: 'false'
+      SELENIUM_HUB_PORT: 4444
+      VNC_PORT: 6080
+      SCREEN_HEIGHT: 800
+      SCREEN_WIDTH: 600
